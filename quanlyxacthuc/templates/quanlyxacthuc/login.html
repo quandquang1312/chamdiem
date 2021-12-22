@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+{% block title %} Login {% endblock%}
+{% block content %}
+    <!-- container -->
+
+<div class="container">
+
+    <ol class="breadcrumb">
+      <li><a href="index.html">Home</a></li>
+      <li class="active">Quản lý xác thực</li>
+    </ol>
+  
+    <div class="row">
+  
+      <!-- Article main content -->
+      <article class="col-xs-12 maincontent">
+        <header class="page-header">
+          <h1 class="page-title">Đăng nhập</h1>
+        </header>
+  
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h3 class="thin text-center">Đăng nhập vào tài khoản của bạn</h3>
+              <p class="text-center text-muted">Nếu bạn chưa có tài khoản, hãy <a href="/register">Đăng ký</a> tại đây. </p>
+              <hr>
+  
+              <form method='POST' action=" ">
+                {% csrf_token %}
+                <div class="top-margin">
+                  <label  id='username'>Username/Email <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name='username'>
+                </div>
+                <div class="top-margin">
+                  <label name='password' id='password'> Mật khẩu <span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" name='password'>
+                </div>
+  
+                <hr>
+  
+                <div class="row">
+                  <div class="col-lg-8">
+                    <b><a href="">Quên mật khẩu?</a></b>
+                  </div>
+                  <div class="col-lg-4 text-right">
+                    <button class="btn btn-action" type="submit">Đăng nhập</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+  
+        </div>
+  
+      </article>
+      <!-- /Article -->
+  
+    </div>
+  </div>	<!-- /container -->
+{% endblock %}

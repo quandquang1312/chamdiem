@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Danh sách bài thi {% endblock %}
+
+{% block content %}
+<div class='container'>
+<article class="col-sm-12 maincontent">
+
+    <header class="page-header">
+        <h1 class="page-title">Danh sách bài thi đã tạo</h1>
+    </header>
+    
+    <button class='btn btn-action'><a href="{% url 'taobaithi' %}" style="color: white; text-decoration:none;">Tạo bài thi</a></button>
+    <hr>
+    <div class='row'>
+        <div class='col-sm-4'>
+            <h4>Thời gian tạo</h4>
+        </div>
+        <div class='col-sm-4'>
+            <h4>Tên bài thi</h4>
+        </div>
+        <div class='col-sm-4'>
+            <h4 style="text-align: right;">Hành động</h4>
+        </div>
+    </div>
+    <hr>
+
+    {% for baithi in baithis %}
+        {% if baithi.created_by == request.user %}
+        <div class='row'>
+            <div class='col-sm-4'>
+                <h4>{{ baithi.thoigian }}</h4>
+            </div>
+            <div class='col-sm-4'>
+                <a href="{% url 'chitietbaithi' baithi.id %}" style="font-size: 21px;" style="text-decoration: none !important; color: black;">{{ baithi.ten }}</a> 
+            </div>
+            <div class='col-sm-4' style="text-align: right;">
+                <a href="{% url 'suabaithi' baithi.id %}">[sửa <i class='fa fa-wrench'></i>]</a>
+                <a href="{% url 'xoabaithi' baithi.id %}">[delete <i class='fa fa-trash' style=''></i>]</a>
+            </div>
+
+        </div>
+        {% endif %}
+    {% endfor %}
+    
+
+</article>
+</div>
+{% endblock%}

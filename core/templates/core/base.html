@@ -1,0 +1,146 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %} {% endblock %} - Chamdiem </title>
+    <link rel="shortcut icon" href="{% static 'core/media/images/icon_cd.png' %}">
+    <link rel="stylesheet" href="{% static 'core/styles/bootstrap.min.css' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for our template -->
+    <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="{% static 'core/styles/bootstrap-theme.css' %}" media="screen" >
+    <link rel='stylesheet' href="{% static 'core/styles/main.css' %}">
+    <link rel='stylesheet' href="{% static 'core/styles/custom.css' %}">
+
+    <!-- Js -->
+    <script src="{% static 'core/script/html5shiv.js' %}"></script>
+	  <script src="{% static 'core/script/respond.min.js' %}"></script>
+
+  </head>
+  <body class="home">
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top headroom" >
+      <div class="container">
+        <div class="navbar-header">
+          <!-- Button for smallest screens -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+          <a class="navbar-brand" href="/home"><img src="{% static 'core/media/images/logo_cd.png' %}" alt="Cham diem" style="width: 200px;"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav pull-right">
+            <li class="active"><a href="/home">Trang Chủ</a></li>
+            <li><a href="{% url 'about' %}">Thông Tin</a></li>
+            {% if user.is_authenticated %}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Chức Năng <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/danhsachbaithi">Danh Sách Bài Thi</a></li>
+                </ul>
+              </li>
+            {% endif %}
+            <li><a href="{% url 'contact' %}">Liên Hệ</a></li>
+            {% if user.is_authenticated %}
+              <div class="btn">
+                <li><a href="/thongtin" style="color: #bbb;">{{ user.username }}</a></li>
+              </div>
+              <div class="btn" style="background-color:darkred;">
+                <li><a href="{% url 'logout' %}"  style="color: #bbb;">Log out</a></li>
+              </div>
+            {% else %}
+              <li><a class="btn" href="{% url 'login' %}">ĐĂNG KÝ / ĐĂNG NHẬP</a></li> 
+            {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div> 
+    <!-- /.navbar -->
+
+    <!-- secondary header -->
+    <header id="head" class="secondary"></header>
+    <!-- /header-->
+    
+    {% block content %}
+    {% endblock %}
+
+    <!-- footer -->
+    <footer id="footer" class="top-space">
+      <div class="footer1">
+        <div class="container">
+          <div class="row">
+            
+            <div class="col-md-3 widget">
+              <h3 class="widget-title">Liên hệ</h3>
+              <div class="widget-body">
+                <p>(84) 791-141-42<br>
+                  <a href="mailto:#">truonghongngan@gmail.com</a><br>
+                  <br>
+                  40 Lâm Quang Thự, q Liên Chiều, tp Đà Nẵng
+                </p>	
+              </div>
+            </div>
+  
+            <div class="col-md-3 widget">
+              <h3 class="widget-title">Mạng xã hội</h3>
+              <div class="widget-body">
+                <p class="follow-me-icons">
+                  <a href=""><i class="fa fa-twitter"></i></a>
+                  <a href=""><i class="fa fa-dribbble fa-2"></i></a>
+                  <a href=""><i class="fa fa-github fa-2"></i></a>
+                  <a href=""><i class="fa fa-facebook fa-2"></i></a>
+                </p>	
+              </div>
+            </div>
+  
+            <div class="col-md-6 widget">
+              <h3 class="widget-title">Cham diem</h3>
+              <div class="widget-body">
+                <p>Website chấm điểm trắc nghiệm dành cho giáo viên, sinh viên, học sinh.</p>
+                <p>Giảm thiểu thời gian chấm điểm. Độ chính xác cao</p>
+              </div>
+            </div>
+  
+          </div> <!-- /row of widgets -->
+        </div>
+      </div>
+  
+      <div class="footer2">
+        <div class="container">
+          <div class="row">
+            
+            <div class="col-md-6 widget">
+              <div class="widget-body">
+                <p class="simplenav">
+                  <a href="#">Home</a> | 
+                  <a href="about.html">About</a> |
+                  <a href="sidebar-right.html">Sidebar</a> |
+                  <a href="contact.html">Contact</a> |
+                  <b><a href="signup.html">Sign up</a></b>
+                </p>
+              </div>
+            </div>
+  
+            <div class="col-md-6 widget">
+              <div class="widget-body">
+                <p class="text-right">
+                  Copyright &copy; 2021, Chamdiem
+                </p>
+              </div>
+            </div>
+  
+          </div> <!-- /row of widgets -->
+        </div>
+      </div>
+  
+    </footer>	
+    <!-- /footer -->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="{% static 'core/script/headroom.min.js' %}"></script>
+    <script src="{% static 'core/script/jQuery.headroom.min.js' %}"></script>
+    <script src="{% static 'core/script/template.js' %}"></script>
+  </body>
+</html>

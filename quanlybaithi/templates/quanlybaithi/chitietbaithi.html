@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block title %} {{ baithi.ten }} {% endblock %}
+
+{% block content %}
+<div class='container'>
+    <h3>{{ baithi.ten }}</h3>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>{{ baithi.id }}</td>
+        </tr>
+        <tr>
+            <td>Tên</td>
+            <td>{{ baithi.ten }}</td>
+        </tr>
+        <tr>
+            <td>Thời gian tạo</td>
+            <td>{{ baithi.thoigian }}</td>
+        </tr>
+        <tr>
+            <td>Tạo bởi</td>
+            <td>{{ baithi.created_by.username }}</td>
+        </tr>
+    </table>
+    
+</div>
+
+{% endblock%}

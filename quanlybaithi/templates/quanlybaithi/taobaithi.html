@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Tạo bài thi {% endblock %}
+
+{% block content %}
+<div class='container'>
+    <h1 class='text-align'>Tạo bài thi</h1>
+    <h4>Tên bài thi</h3>
+    <form method="POST" action=" " class='tao'>
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type='submit' class="btn">Tạo bài thi</button>
+    </form>    
+    
+</div>
+<style>
+    .tao label {
+        display: none;
+    }
+</style>
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById("author").value = name;
+</script>
+
+{% endblock%}

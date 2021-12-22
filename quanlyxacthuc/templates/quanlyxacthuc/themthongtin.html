@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Thêm Thông Tin {% endblock %}
+
+{% block content %}
+
+<div class='container'>
+    <h1 class='text-align'>Thêm Thông Tin</h1>
+    
+    <form method="POST" action=" " class='tao'>
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type='submit' class="btn">Sửa</button>
+    </form>    
+    
+</div>
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById("author").value = name;
+</script>
+
+{% endblock%}

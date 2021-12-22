@@ -1,0 +1,79 @@
+{% extends 'core/base.html' %}
+{% block title %} Liên hệ {% endblock%}
+{% block content %}
+   <!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="index.html">Trang chủ</a></li>
+			<li class="active">Liên hệ</li>
+		</ol>
+
+		<div class="row">
+			
+			<!-- Article main content -->
+			<article class="col-sm-9 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Để lại lời nhắn</h1>
+				</header>
+				
+				<p>
+					Để góp ý giải pháp cải thiện sản phẩm. Mời các bạn liên hệ với chúng tôi theo cách thức bên dưới.<br>
+                    Chúng tôi luôn sẵn sàng đón nhận ý kiến từ các bạn.
+				<br>
+					<form>
+						<div class="row">
+							<div class="col-sm-4">
+								<input class="form-control" type="text" placeholder="Họ Tên">
+							</div>
+							<div class="col-sm-4">
+								<input class="form-control" type="text" placeholder="Địa chỉ Email">
+							</div>
+							<div class="col-sm-4">
+								<input class="form-control" type="text" placeholder="Số Điện Thoại">
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-sm-12">
+								<textarea placeholder="Để lại lời nhắn..." class="form-control" rows="9"></textarea>
+							</div> 
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-sm-6">
+								
+							</div>
+							<div class="col-sm-6 text-right">
+								<input class="btn btn-action" type="submit" value="Send message">
+							</div>
+						</div>
+					</form>
+
+			</article>
+			<!-- /Article -->
+			
+			<!-- Sidebar -->
+			<aside class="col-sm-3 sidebar sidebar-right">
+
+				<div class="widget">
+					<h4>Địa chỉ</h4>
+					<address>
+						40 Lâm Quang Thự, q Liên Chiều, tp Đà Nẵng
+					</address>
+					<h4>Điện thoại:</h4>
+					<address>
+						(84) 791-141-42
+					</address>
+				</div>
+
+			</aside>
+			<!-- /Sidebar -->
+
+		</div>
+	</div>	<!-- /container -->
+	
+	<section class="container-full top-space">
+		<iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.7452482977096!2d108.1649687149277!3d16.078704188875058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314218e7f2cee721%3A0x8850993a7fa151bc!2zNDAgTMOibSBRdWFuZyBUaOG7sSwgVGhhbmggS2jDqiBUw6J5LCBMacOqbiBDaGnhu4N1LCDEkMOgIE7hurVuZywgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1640091843870!5m2!1svi!2s" width="600" height="550" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+	</section>
+{% endblock %}
