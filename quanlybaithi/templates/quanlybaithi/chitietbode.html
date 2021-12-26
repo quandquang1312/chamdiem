@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %} Danh sách bài thi {% endblock %}
+
+{% block content %}
+<div class='container'>
+<article class="col-sm-12 maincontent">
+
+    <header class="page-header">
+        <h1 class="page-title">Danh sách bộ đề</h1>
+        
+    </header>
+    
+    <hr>
+    <div class='row'>
+        <div class='col-sm-4'>
+            <h4 class='text-danger'>Mã đề</h4>
+        </div>
+        <div class='col-sm-4'>
+            <h4 class='text-danger'>Hình ảnh</h4>
+        </div>
+    </div>
+    <hr>
+        {% for de in bdapans %}
+        <div class='row'>
+            <div class='col-sm-4'>
+                <td><label> {{ de.bmade }}</label> </td>
+            </div>
+            <div class='col-sm-4'>
+                {% if de.dapan %}
+                    <img src={{ de.dapan.url }}
+                {% endif %}    
+            </div>
+        </div>
+        {% endfor %}
+</article>
+</div>
+{% endblock%}

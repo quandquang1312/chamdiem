@@ -1,0 +1,78 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Danh sách bài thi {% endblock %}
+
+{% block content %}
+<div class='container'>
+<article class="col-sm-12 maincontent">
+
+    <header class="page-header">
+        <h1 class="page-title">Danh sách bài làm của các sinh viên</h1>
+        
+    </header>
+    
+    <hr>
+    <div class='row'>
+        <div class='col-sm-3'>
+            <h4 class='text-danger'>Thông Tin</h4>
+        </div>
+        <div class='col-sm-3'>
+            <h4 class='text-danger'>Bài làm</h4>
+        </div>
+        <div class='col-sm-3'>
+            <h4 class='text-danger'>Kết Quả</h4>
+        </div>
+        <div class='col-sm-3'>
+            <h4 style="text-align: right;" class='text-danger'>Hành động</h4>
+        </div>
+    </div>
+    <hr>
+        {% for bailam in bailams %}
+        <div class='row'>
+            <div class='col-sm-3'>
+                <h4>
+                    <table>
+                        <tr>
+                            <td><label style='font-weight: normal'>Họ tên:</label><td>
+                            <td><label> {{ bailam.hoten }}</label> </td>
+                        </tr>
+                        <tr>
+                            <td><label style='font-weight: normal'>SBD:</label><td>
+                            <td><label> {{ bailam.sbd }}</label> </td>
+                        </tr>
+                    </table>
+                </h4>
+            </div>
+            <div class='col-sm-3'>
+                {% if bailam.bai %}
+                    <img src="{{ bailam.bai.url }}" height="200">
+                {% endif %}
+            </div>
+            <div class='col-sm-3'>
+                <h4>
+                    <table>
+                        <tr>
+                            <td><label style='font-weight: normal'>Kết quả:</label><td>
+                            <td><label> {{ bailam.diem }} / {{ bailam.baithi.socau }}</label> </td>
+                        </tr>
+                        <tr>
+                            <td><label style='font-weight: normal'>Mã đề:</label><td>
+                            <td><label> {{ bailam.made }} </label> </td>
+                        </tr>
+                    </table>
+                </h4>
+            </div>
+            <div class='col-sm-3'>
+                <h4 style="text-align: right;">
+                    <a href="{% url 'chamdiem' bailam.baithi.id bailam.id %}">[load <i class='fa fa-spinner'></i>]</a>
+                    <a href="{% url 'suabailam' bailam.id %}">[sửa <i class='fa fa-edit'></i>]</a>
+                    <a href="{% url 'xoabailam' bailam.id %}">[xóa <i class='fa fa-trash'></i>]</a>
+                </h4>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+
+</article>
+</div>
+{% endblock%}

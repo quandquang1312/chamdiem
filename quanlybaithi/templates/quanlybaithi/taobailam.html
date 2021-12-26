@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Tạo bài làm {% endblock %}
+
+{% block content %}
+<div class='container'>
+    <h1 class='text-align'>Tạo bài làm</h1>
+    <form method="POST" action=" " class='tao' enctype='multipart/form-data'> 
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type='submit' class="btn">Tạo bài làm</button>
+    </form>    
+    
+</div>
+<style>
+</style>
+<script>
+    var url = window.location.href;
+    var part = url.slice(37,39)
+    document.getElementById("baithi").value = part;
+</script>
+
+{% endblock%}

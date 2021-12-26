@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Tạo bộ đề  {% endblock %}
+
+{% block content %}
+<div class='container'>
+    <h1 class='text-align'>Tạo bộ đề</h1>
+    <form method="POST" action=" " class='tao' enctype='multipart/form-data'>
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type='submit' class="btn">Tạo bộ đề</button>
+    </form>    
+    
+</div>
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById("author").value = name;
+</script>
+
+{% endblock%}

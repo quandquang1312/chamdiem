@@ -5,8 +5,7 @@
 {% block content %}
 <div class='container'>
     <h1 class='text-align'>Sửa bài thi</h1>
-    <h4>Tên bài thi</h3>
-    <form method="POST" action=" " class='tao'>
+    <form method="POST" action=" " class='tao' enctype='multipart/form-data'>
         {% csrf_token %}
         {{form.as_p}}
         <button type='submit' class="btn">Update</button>

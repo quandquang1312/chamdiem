@@ -4,25 +4,54 @@
 
 {% block content %}
 <div class='container'>
-    <h3>{{ baithi.ten }}</h3>
-    <table>
-        <tr>
-            <td>ID</td>
-            <td>{{ baithi.id }}</td>
-        </tr>
-        <tr>
-            <td>Tên</td>
-            <td>{{ baithi.ten }}</td>
-        </tr>
-        <tr>
-            <td>Thời gian tạo</td>
-            <td>{{ baithi.thoigian }}</td>
-        </tr>
-        <tr>
-            <td>Tạo bởi</td>
-            <td>{{ baithi.created_by.username }}</td>
-        </tr>
-    </table>
+    <div class='row'>
+        <article class='col-xs-12 maincontent'>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class='top-margin col-xs-12'>
+                        <div class='col-xs-3'><label class='text-danger'>Tên bài thi</label></div>
+                        <div class='col-xs-3'><label style="font-size: 21px;">{{ baithi.ten }}</abel></div>
+                    </div><br>
+                    <div class='top-margin col-xs-12'>
+                        <div class='col-xs-3'><label class='text-danger'>Đáp án</label></div>
+                        <div class='col-xs-3'>
+                            {% if baithi.ketqua %}
+                                <img src="{{ baithi.ketqua.url }}" width="400">
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class='top-margin col-xs-12'>
+                            <div class='col-xs-3'>
+                                <label class='text-danger'>Bộ đáp án</label>
+                                
+                            </div>
+                            <div class='col-xs-3'>
+                                <a href="{% url 'chitietbode' baithi.id %}">[xem <i class='fa fa-plus-square'></i>]</a>
+                                <a href="{% url 'taodapan' baithi.id %}">[thêm <i class='fa fa-plus-square'></i>]</a>
+                            </div>
+                        <div class='col-xs-3'>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class='top-margin col-xs-12'>
+                        <div class='col-xs-3'><label class='text-danger'>Thời gian tạo</label></div>
+                        <div class='col-xs-3'><abel>{{ baithi.thoigian }}</habel3></div><br>
+                    </div>
+                    <div class='top-margin col-xs-12'>
+                        <div class='col-xs-3'><label class='text-danger'>Số câu</label></div>
+                        <div class='col-xs-3'>
+                            <label>{{ baithi.socau }} | <a href="{% url 'capnhatsocau' baithi.id %}">[cập nhật <i class='fa fa-spinner'></i>]</a></label>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <button class='btn btn-action'><a href="{% url 'taobailam' baithi.id %}" style="color: white; text-decoration:none;">Tạo bài làm</a></button>
+            <button class='btn btn-action'><a href="{% url 'chitietbailam' baithi.id %}" style="color: white; text-decoration:none;">Xem bài làm</a></button>
+        </article>
+    </div>
     
 </div>
 

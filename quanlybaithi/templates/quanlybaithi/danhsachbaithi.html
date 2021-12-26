@@ -32,11 +32,13 @@
                 <h4>{{ baithi.thoigian }}</h4>
             </div>
             <div class='col-sm-4'>
-                <a href="{% url 'chitietbaithi' baithi.id %}" style="font-size: 21px;" style="text-decoration: none !important; color: black;">{{ baithi.ten }}</a> 
+                <h4>
+                    <a href="{% url 'chitietbaithi' baithi.id %}" style="font-size: 21px;" style="text-decoration: none !important; color: black;">{{ baithi.ten }}</a> 
+                </h4>        
             </div>
             <div class='col-sm-4' style="text-align: right;">
                 <a href="{% url 'suabaithi' baithi.id %}">[sửa <i class='fa fa-wrench'></i>]</a>
-                <a href="{% url 'xoabaithi' baithi.id %}">[delete <i class='fa fa-trash' style=''></i>]</a>
+                <a href="{% url 'xoabaithi' baithi.id %}">[xóa <i class='fa fa-trash' style=''></i>]</a>
             </div>
 
         </div>

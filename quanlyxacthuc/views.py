@@ -1,15 +1,22 @@
 from django.contrib import auth
 from django.contrib.auth import authenticate, login as l, logout as lo
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import UpdateView, CreateView
 
-from quanlyxacthuc.forms import CreateUserForm, ProfileForm, UserForm
+from quanlyxacthuc.forms import CreateUserForm, ProfileForm, UserForm, PasswordChangingForm
 from quanlyxacthuc.models import Profile
 from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView as auth_PW
 
 # Create your views here.
+
+class PasswordChangeView(auth_PW):
+    form_class = PasswordChangingForm
+    success_url = reverse_lazy('home')
+
 def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -31,7 +38,7 @@ def register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return render(request, 'quanlyxacthuc/thongbao.html')
         else:
             return HttpResponse('Failed')
     form = CreateUserForm

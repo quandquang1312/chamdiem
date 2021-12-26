@@ -21,55 +21,20 @@
           <div class="panel panel-default">
             <div class="panel-body">
               <h3 class="thin text-center">Đăng ký tài khoản</h3>
-              <p class="text-center text-muted">Nếu bạn đã có tài khoản, hãy <a href="/login">Đăng nhập</a> để khỏi mất công đăng ký. </p>
-              <hr>
-
-              <form method="POST" action=" " class='register-form'>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <!--
-                <div class="top-margin">
-                  <label>Username<span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" name='username' id='username'>
-                </div>
-                <div class="top-margin">
-                  <label>Họ tên<span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" name='hoten' id='hoten'>
-                </div>
-                <div class="top-margin">
-                  <label>Địa chỉ Email<span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" name='email' id='email'>
-                </div>
-                <div class="top-margin">
-                  <label>Số điện thoại</label>
-                  <input type="text" class="form-control" name='sdt' id='sdt'>
-                </div>
-  
-                <div class="row top-margin">
-                  <div class="col-sm-6">
-                    <label>Mật khẩu<span class="text-danger">*</span></label>
-                    <input type="password" class="form-control" name='password1' id='password1'>
-                  </div>
-                  <div class="col-sm-6">
-                    <label>Xác nhận mật khẩu<span class="text-danger">*</span></label>
-                    <input type="password" class="form-control" name='password2' id='password2'>
-                  </div>
-                </div>
-                
+              {% if request.user.is_authenticated %}
+                <p class="text-center text-muted">Bạn đã đăng nhập</p>
+              {% else %}
+                <p class="text-center text-muted">Nếu bạn đã có tài khoản, hãy <a href="/login">Đăng nhập</a> để khỏi mất công đăng ký. </p>
                 <hr>
-  
-                <div class="row">
-                  <div class="col-lg-8">
-                    <label class="checkbox">
-                      <input type="checkbox">
-                      Tôi đã đọc và hoàn toàn đồng ý với các <a href="page_terms.html">Điều khoản</a>
-                    </label>
-                  </div> -->
+
+                <form method="POST" action=" " class='register-form'>
+                  {% csrf_token %}
+                  {{ form.as_p }}
                   <div class="col-lg-4 text-right">
                     <button class="btn btn-action" type="submit">Đăng ký</button>
                   </div>
-                </div>
-              </form>
+                </form>
+              {% endif %}
             </div>
           </div>
   

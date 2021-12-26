@@ -4,6 +4,7 @@
 
 .rounded {
     width: 200px;
+    height: 200px;
     text-align: center;
     border-radius: 50%;
 }
@@ -36,8 +37,8 @@
 
 .ten-form {
     padding-left: 10px;
-    width: 400px;
-    height: 40px;
+    width: 350px;
+    height: 35px;
     border-radius: 10px;
     border-color: #555;
     font-size: 16px;
