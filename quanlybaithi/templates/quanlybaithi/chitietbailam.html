@@ -10,7 +10,15 @@
         <h1 class="page-title">Danh sách bài làm của các sinh viên</h1>
         
     </header>
-    
+    <div class='row'>
+        <div class='col-sm-3'>
+            {% if bailams.0 %}
+            <div class="btn" style="background-color:darkorange">
+                <a href="{% url 'xuatfile' bailams.0.baithi.id %}" style='color: white'>Xuất file csv</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
     <hr>
     <div class='row'>
         <div class='col-sm-3'>
@@ -26,16 +34,14 @@
             <h4 style="text-align: right;" class='text-danger'>Hành động</h4>
         </div>
     </div>
+
+   
     <hr>
         {% for bailam in bailams %}
         <div class='row'>
             <div class='col-sm-3'>
                 <h4>
                     <table>
-                        <tr>
-                            <td><label style='font-weight: normal'>Họ tên:</label><td>
-                            <td><label> {{ bailam.hoten }}</label> </td>
-                        </tr>
                         <tr>
                             <td><label style='font-weight: normal'>SBD:</label><td>
                             <td><label> {{ bailam.sbd }}</label> </td>

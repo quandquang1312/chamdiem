@@ -3,7 +3,7 @@ from django.urls import path, include
 from . import views
 from .views import TaoBaithiView, XoaBaithiView, SuaBaithiView
 from .views import TaoBailamView, SuaBailamView, XoaBailamView
-from .views import TaoBodapan
+from .views import TaoBodapan, XoaBodapanView
 
 urlpatterns = [
     path('danhsachbaithi/', views.danhsachbaithi, name='danhsachbaithi'),
@@ -19,5 +19,7 @@ urlpatterns = [
     path('danhsachbaithi/<int:pk>/capnhatsocau', views.capnhatsocau, name='capnhatsocau'),
     path('danhsachbaithi/getsbd/<int:bailam_id>', views.laysbd, name='laysbd'),
     path('danhsachbaithi/<int:bailam_id>/taodapan', TaoBodapan.as_view(), name='taodapan'),
-    path('danhsaschbaithi/chitietbode/<int:baithi_id>', views.chitietbode, name='chitietbode')
+    path('danhsachbaithi/chitietbode/<int:baithi_id>', views.chitietbode, name='chitietbode'),
+    path('danhsachbaithi/chitietbode/<int:pk>/delete', XoaBodapanView.as_view(), name='xoabodapan'),
+    path('danhsachbaithi/<int:pk>/xuatfile', views.xuatfile, name='xuatfile')
 ]

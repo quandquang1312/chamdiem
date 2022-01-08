@@ -8,12 +8,13 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.views.generic import CreateView, UpdateView
 
-from .forms import BailamForm, BaithiForm
+from .forms import BailamForm, BaithiForm, BodapanForm
 
 from .mlfunctions import result as diemrs
 from .mlfunctions import get_sbd
 
 from .custom_model import BailamSerializer
+import csv
 
 
 # Create your views here.
@@ -50,11 +51,26 @@ class XoaBaithiView(DeleteView):
 
 def capnhatsocau(request, pk):
     baithi = Baithi.objects.get(id=pk)
-    bt_url = baithi.ketqua.url
+    bdapan = Bodapan.objects.filter(baithi=baithi)[0]
+    bt_url = bdapan.dapan.url
+
     kq = diemrs(bt_url)
     baithi.socau = len(kq)
     baithi.save()
     return HttpResponseRedirect(reverse_lazy('danhsachbaithi'))
+
+def xuatfile(request, pk):
+    response = HttpResponse(content_type='text/csv')
+    writer = csv.writer(response)
+    writer.writerow(['SBD', 'Ma De', 'Ket Qua'])
+    baithi = Baithi.objects.get(id=pk)
+    bailams = Bailam.objects.filter(baithi=baithi)
+    for bailam in bailams.values_list('sbd', 'made', 'diem'):
+        writer.writerow(bailam)
+
+    filename = "diem" + '_' + str(baithi.ten)
+    response['Content-Disposition'] = 'attachment; filename="%s"' % filename
+    return response
 
 
 def chamdiem(request, baithi_id, bailam_id):
@@ -66,7 +82,7 @@ def chamdiem(request, baithi_id, bailam_id):
     bl_url = bailam.bai.url
 
     sbd, md = get_sbd(bl_url)
-    return HttpResponse(str(bl_url) + " " + str(sbd) + " " + str(md))
+    # return HttpResponse(str(bl_url) + " " + str(sbd) + " " + str(md))
     bda = bodapan.get(bmade=md)
     bt_url = bda.dapan.url
 
@@ -117,4 +133,10 @@ class XoaBailamView(DeleteView):
 class TaoBodapan(CreateView):
     model = Bodapan
     template_name = 'quanlybaithi/taodapan.html'
-    fields = '__all__'
+    # fields = '__all__'
+    form_class = BodapanForm
+
+class XoaBodapanView(DeleteView):
+    model = Bodapan
+    template_name = 'quanlybaithi/xoabode.html'
+    success_url = reverse_lazy('danhsachbaithi')

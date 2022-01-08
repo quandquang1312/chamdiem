@@ -19,6 +19,9 @@
         <div class='col-sm-4'>
             <h4 class='text-danger'>Hình ảnh</h4>
         </div>
+        <div class='col-sm-4'>
+            <h4 class='text-danger' style='text-align: right'>Hành động</h4>
+        </div>
     </div>
     <hr>
         {% for de in bdapans %}
@@ -28,10 +31,16 @@
             </div>
             <div class='col-sm-4'>
                 {% if de.dapan %}
-                    <img src={{ de.dapan.url }}
+                    <img src={{ de.dapan.url }}>
                 {% endif %}    
             </div>
+            <div class='col-sm-4'>
+                <h4 style="text-align: right">
+                    <a href="{% url 'xoabodapan' de.id %}">[xóa <i class='fa fa-trash'>]</i></a>
+                </h4>
+            </div>
         </div>
+        <hr>
         {% endfor %}
 </article>
 </div>

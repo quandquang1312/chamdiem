@@ -3,7 +3,7 @@ import tensorflow as tf
 import imutils
 import numpy as np
 
-from .mlmodel import answer, crop_image
+from .mlmodel import answer, crop_image, predict_sbd_md
 
 def result(imgurl='/media/uploads/1_Ca0WIXe.jpg'):
     
@@ -26,28 +26,12 @@ def predict(img, model):
     return np.argmax(y)
 
 def get_sbd(imgurl='/media/uploads/1_Ca0WIXe.jpg'):
-    model = tf.keras.models.load_model('weight_18_12.h5')
-    img = cv2.imread('/home/covid19/github/chamdiem' + str(imgurl))
-    img = cv2.resize(img, (1100,1500))
-
-    crop = crop_image()
-
-    # SBD
-    a = crop.crop_image_sbd(img)
-    b = crop.split_blocks_sbd(a)
-
-    # MaDe
-    a1 = crop.crop_image_md(img)
-    b1 = crop.split_blocks_md(a1)
-
-    sbd = ''
-    for i in range(len(b)):
-        y = predict(b[i], model)
-        sbd += str(y)
-
-    md = ''
-    for i in range(len(b1)):
-        y = predict(b1[i], model)
-        md += str(y)
-
-    return sbd, md
+    img = cv2.imread("/home/covid19/github/chamdiem" + str(imgurl))
+    predict_c = predict_sbd_md()
+    crop_sbd = predict_c.crop_image_sbd(img)
+    crop_md = predict_c.crop_image_md(img)  
+    split_sbd = predict_c.split_blocks_sbd(crop_sbd)
+    split_md = predict_c.split_blocks_md(crop_md)
+    list_answer_sbd = predict_c.list_ans(split_sbd) 
+    list_answer_md = predict_c.list_ans(split_md) 
+    return predict_c.get_answers(list_answer_sbd), predict_c.get_answers(list_answer_md)

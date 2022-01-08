@@ -13,8 +13,9 @@
     
 </div>
 <script>
-    var name = "{{ user.id }}";
-    document.getElementById("author").value = name;
+    var url = window.location.href;
+    var part = url.slice(37,39)
+    document.getElementById("baithi").value = part;
 </script>
 
 {% endblock%}

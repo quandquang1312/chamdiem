@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Xóa bộ đề  {% endblock %}
+
+{% block content %}
+<div class='container'>
+    <h1 class='text-align'>Xóa bộ đề</h1>
+    <h3>Bạn có chắc chắn? {{ post.ten }}</h3>
+    <form method="POST" action=" " style="float:left;">
+        {% csrf_token %}
+        {{form.as_p}}
+        
+        <button type='submit' class='btn' style="color: darkred;">Xóa</button>
+    </form>    
+        <button class='btn' style="color: white; background-color:#555; margin-left:20px;"><a href="{% url 'danhsachbaithi' %}" style="color: white;">Cancel</a></input>
+    
+</div>
+
+{% endblock%}
